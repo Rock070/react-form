@@ -193,7 +193,7 @@ function FormContent({
   );
 }
 
-function Form() {
+function App() {
   const [nameValue, setNameValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
@@ -225,7 +225,7 @@ function Form() {
     </div>
   );
 }
-export default Form;
+export default App;
 
 // 二次填寫的時候無法正確判斷欄位是否為空
 // 正確繳交後無法清除舊答案

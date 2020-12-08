@@ -12,8 +12,10 @@ html {
 
 .content {
   width: 70%;
+  position: absolute;
   left: 50%;
   transform: translate(-50%);
+  
 }
 
 .content .topYellow {
@@ -27,7 +29,8 @@ html {
 .content .inner {
   border-radius: 0px 0px 5px 5px;
   background-color: white;
-  padding: 5px 60px;
+  padding: 5px 40px;
+  margin-bottom: 40px;
 }
 .content .inner span, .content .inner .mark {
   color: #e74149;
@@ -47,7 +50,7 @@ html {
 .content .inner input {
   margin-bottom: 20px;
   border: 1px solid #d0d0d0;
-  color: #afafaf;
+  color: #222222;
   font-size: 16px;
   padding: 5px 5px;
 }
