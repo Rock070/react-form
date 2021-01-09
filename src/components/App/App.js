@@ -1,7 +1,8 @@
-import React, { useState, memo, useCallback, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 
 function Header() {
+
   return (
     <header>
       <h1 className="title">新拖延運動報名表單</h1>
@@ -18,6 +19,11 @@ function Header() {
 }
 
 function FormContent({
+  nameRedTextEl,
+  emailRedTextEl,
+  phoneRedTextEl,
+  registerRedTextEl,
+  howKnowRedTextEl,
   nameValue,
   emailValue,
   phoneValue,
@@ -47,7 +53,7 @@ function FormContent({
             placeholder="你的回答"
             name="name"
           />
-          <div className="redText hidden">此欄位不可為空</div>
+          <div ref={nameRedTextEl} className="redText hidden">此欄位不可為空</div>
         </div>
         <div className="email">
           <div className="title">
@@ -62,7 +68,7 @@ function FormContent({
             placeholder="你的電子郵件"
             name="email"
           />
-          <div className="redText hidden">此欄位不可為空</div>
+          <div ref={emailRedTextEl} className="redText hidden">此欄位不可為空</div>
         </div>
         <div className="phone">
           <div className="title">
@@ -77,7 +83,7 @@ function FormContent({
             placeholder="你的手機號碼"
             name="phone"
           />
-          <div className="redText hidden">此欄位不可為空</div>
+          <div ref={phoneRedTextEl} className="redText hidden">此欄位不可為空</div>
         </div>
         <div className="register">
           <div className="title">
@@ -100,7 +106,7 @@ function FormContent({
               趴在地上滑手機找現成的
             </option>
           </select>
-          <div className="redText hidden">此欄位不可為空</div>
+          <div ref={registerRedTextEl } className="redText hidden">此欄位不可為空</div>
         </div>
         <div className="howKnow">
           <div className="title">
@@ -115,7 +121,7 @@ function FormContent({
             placeholder="你的回答"
             name="howKnow"
           />
-          <div className="redText hidden">此欄位不可為空</div>
+          <div ref={howKnowRedTextEl} className="redText hidden">此欄位不可為空</div>
         </div>
         <div className="other">
           <div className="title">其他</div>
@@ -129,7 +135,6 @@ function FormContent({
             placeholder="你的回答"
             name="advice"
           />
-          <div className="redText hidden">此欄位不可為空</div>
         </div>
       </section>
       <input
@@ -137,35 +142,35 @@ function FormContent({
         type="submit"
         onClick={(e) => {
           e.preventDefault();
-          if(nameValue == "" || emailValue == "" || phoneValue == "" || typeValue == "" || howknowValue == "" ) {
-            if(nameValue == "") {
-              document.querySelector('.name .redText').classList.remove('hidden')
+          if(nameValue === "" || emailValue === "" || phoneValue === "" || typeValue === "" || howknowValue === "" ) {
+            if(nameValue === "") {
+              nameRedTextEl.current.classList.remove('hidden')
             } else {
-              document.querySelector('.name .redText').classList.add('hidden')
+              nameRedTextEl.current.classList.add('hidden')
             }
 
-            if(emailValue == "") {
-              document.querySelector('.email .redText').classList.remove('hidden')
+            if(emailValue === "") {
+              emailRedTextEl.current.classList.remove('hidden')
             } else {
-              document.querySelector('.email .redText').classList.add('hidden')
+              emailRedTextEl.current.classList.add('hidden')
             }
 
-            if(phoneValue == "") {
-              document.querySelector('.phone .redText').classList.remove('hidden')
+            if(phoneValue === "") {
+              phoneRedTextEl.current.classList.remove('hidden')
             } else {
-              document.querySelector('.phone .redText').classList.add('hidden')
+              phoneRedTextEl.current.classList.add('hidden')
             }
 
-            if(typeValue == "") {
-              document.querySelector('.register .redText').classList.remove('hidden')
+            if(typeValue === "") {
+              registerRedTextEl.current.classList.remove('hidden')
             } else {
-              document.querySelector('.register .redText').classList.add('hidden')
+              registerRedTextEl.current.classList.add('hidden')
             }
 
-            if(howknowValue == "") {
-              document.querySelector('.howKnow .redText').classList.remove('hidden')
+            if(howknowValue === "") {
+              howKnowRedTextEl.current.classList.remove('hidden')
             } else {
-              document.querySelector('.howKnow .redText').classList.add('hidden')
+              howKnowRedTextEl.current.classList.add('hidden')
             }
             return
           }
@@ -200,6 +205,12 @@ function App() {
   const [typeValue, setTypeValue] = useState("");
   const [howknowValue, setHowknowValue] = useState("");
   const [otherValue, setOtherValue] = useState("");
+  
+  const nameRedTextEl = useRef(null)
+  const emailRedTextEl = useRef(null)
+  const phoneRedTextEl = useRef(null)
+  const registerRedTextEl = useRef(null)
+  const howKnowRedTextEl = useRef(null)
 
   return (
     <div className="content">
@@ -207,6 +218,11 @@ function App() {
       <div className="inner">
         <Header />
         <FormContent
+          nameRedTextEl = {nameRedTextEl}
+          emailRedTextEl = {emailRedTextEl}
+          phoneRedTextEl = {phoneRedTextEl}
+          registerRedTextEl  = {registerRedTextEl }
+          howKnowRedTextEl = {howKnowRedTextEl}
           nameValue={nameValue}
           emailValue={emailValue}
           phoneValue={phoneValue}
